@@ -6,9 +6,31 @@ if(!$service_status){
 	return;
 }
 
+if(!isset($_REQUEST['token'])){
+	die(json_encode($errmsg[3]));
+}
+
 $conn = mysqli_connect($mysql_server_host, $mysql_username, $mysql_password, $mysql_database);
 if(!$conn){
 	die(json_encode($errmsg[2]));
+}
+
+$token = $_REQUEST['token'];
+$sql = "select id from tokens where token=\"" . filter($token) . "\"";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die(json_encode($errmsg[4]));
+}
+if(!$row = mysqli_fetch_array($query_res)){
+	die(json_encode($errmsg[5]));
+}
+$id = $row['id'];
+
+$time = date('Y-m-d H:i:s');
+$sql = "update tokens set online=1,lastrequest=\"$time\" where id=$id";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die(json_encode($errmsg[4]));
 }
 
 cleanup();

@@ -15,7 +15,7 @@ $errmsg=array(//错误返回信息
 	2=>array('result'=>2,'msg'=>'Failed to connect to Database'),	//数据库连接失败
 	3=>array('result'=>3,'msg'=>'Missing parameter'),				//缺少参数（见上表，若传参缺失会报此错误码）
 	4=>array('result'=>4,'msg'=>'Database query Failed'),			//数据库操作失败
-    5=>array('result'=>5,'msg'=>'Invalid activation code')          //无效密钥
+    5=>array('result'=>5,'msg'=>'Permission Denied')                //无权限（登录失败、无效token、无效密钥等）
 );
 
 function filter($str)

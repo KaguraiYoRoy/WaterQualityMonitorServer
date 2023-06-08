@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost:3306
--- 生成日期： 2023-06-07 19:40:19
+-- 生成日期： 2023-06-08 18:53:14
 -- 服务器版本： 8.0.32-0ubuntu0.20.04.2
 -- PHP 版本： 7.4.3-4ubuntu2.18
 
@@ -33,12 +33,18 @@ CREATE TABLE `activation_code` (
   `code` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
 --
--- 转存表中的数据 `activation_code`
+-- 表的结构 `tasks`
 --
 
-INSERT INTO `activation_code` (`id`, `code`) VALUES
-(1, 'testcode123');
+CREATE TABLE `tasks` (
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id` int UNSIGNED NOT NULL,
+  `task` json NOT NULL,
+  `status` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -49,15 +55,10 @@ INSERT INTO `activation_code` (`id`, `code`) VALUES
 CREATE TABLE `tokens` (
   `id` int UNSIGNED NOT NULL,
   `token` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nick` varchar(128) NOT NULL
+  `nick` varchar(128) NOT NULL,
+  `online` tinyint(1) NOT NULL DEFAULT '0',
+  `lastrequest` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 转存表中的数据 `tokens`
---
-
-INSERT INTO `tokens` (`id`, `token`, `nick`) VALUES
-(1, '07bbefad9971fb85bb55fee33116cd43', 'testnick');
 
 --
 -- 转储表的索引
@@ -68,6 +69,12 @@ INSERT INTO `tokens` (`id`, `token`, `nick`) VALUES
 --
 ALTER TABLE `activation_code`
   ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`time`);
 
 --
 -- 表的索引 `tokens`
@@ -83,7 +90,7 @@ ALTER TABLE `tokens`
 -- 使用表AUTO_INCREMENT `activation_code`
 --
 ALTER TABLE `activation_code`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
