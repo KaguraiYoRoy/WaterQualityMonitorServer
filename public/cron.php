@@ -33,6 +33,23 @@ if(!$query_res){
 	die(json_encode($errmsg[4]));
 }
 
+$sql = "select task from tasks where id=$id";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die(json_encode($errmsg[4]));
+}
+$tasks = array();
+while($row = mysqli_fetch_array($query_res))
+	array_push($tasks,json_decode($row['task']));
+
+$sql = "delete from tasks where id=$id";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die(json_encode($errmsg[4]));
+}
+
+echo(json_encode(array('result'=>0,'msg'=>'OK','tasks'=>$tasks)));
+
 cleanup();
 
 function cleanup(){
