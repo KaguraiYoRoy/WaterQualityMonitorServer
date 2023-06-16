@@ -1,11 +1,12 @@
 <?php
 //Database config
 $mysql_server_host = 'localhost';
-$mysql_username = '';
+$mysql_username = 'water';
 $mysql_password = '';
-$mysql_database = '';
+$mysql_database = 'water';
 
-$cron_url = 'http://localhost/server/public/cron.php';
+$cron_url = 'http://api.iyoroy.cn/water/v1/public/cron.php';
+$upload_url = 'http://api.iyoroy.cn/water/v1/public/upload.php';
 
 $service_status = true;
 $debug_mode = false;
@@ -105,7 +106,6 @@ function filter($str)
     $str = str_replace(")","",$str);
     $str = str_replace("{","",$str);
     $str = str_replace("}","",$str);
-    $str = str_replace(".","",$str);
     $str = str_replace("response","",$str);
     $str = str_replace("write","",$str);
     $str = str_replace("|","",$str);

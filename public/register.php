@@ -15,10 +15,10 @@ if(!isset($_REQUEST['code'])||!isset($_REQUEST['nick'])){
 	die(json_encode($errmsg[3]));
 }
 
-$code = $_REQUEST['code'];
-$nick = $_REQUEST['nick'];
+$code = filter($_REQUEST['code']);
+$nick = filter($_REQUEST['nick']);
 
-$sql = "select id from activation_code where code=\"" . filter($code) . "\"";
+$sql = "select id from activation_code where code=\"$code\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
@@ -35,8 +35,9 @@ if(!$query_res){
 }
 
 $token = md5($id . $_REQUEST['nick'] . time() . rand(1,1024));
+$time = date('Y-m-d H:i:s'); 
 
-$sql = "insert into tokens values($id,\"$token\",\"" . filter($nick) . "\",0,\"" . date('Y-m-d H:i:s') . "\")";
+$sql = "insert into tokens values($id,\"$token\",\"$nick\",0,\"$time\")";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
