@@ -43,7 +43,7 @@ if(!$query_res){
 	die(json_encode($errmsg[4]));
 }
 
-echo(json_encode(array('result'=>0,'msg'=>'OK','token'=>$token,'cron'=>$cron_url)));
+echo(json_encode(array('result'=>0,'msg'=>'OK','token'=>$token,'cron'=>$cron_url,'upload'=>$upload_url)));
 
 cleanup();
 
