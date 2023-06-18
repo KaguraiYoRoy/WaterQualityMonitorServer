@@ -2,11 +2,11 @@
 //Database config
 $mysql_server_host = 'localhost';
 $mysql_username = 'water';
-$mysql_password = '';
+$mysql_password = 'RLXpipwB7N8wWXnJ';
 $mysql_database = 'water';
 
-$cron_url = 'http://api.iyoroy.cn/water/v1/public/cron.php';
-$upload_url = 'http://api.iyoroy.cn/water/v1/public/upload.php';
+$cron_url = 'http://api.iyoroy.cn/water/v1/api/cron.php';
+$upload_url = 'http://api.iyoroy.cn/water/v1/api/upload.php';
 
 $service_status = true;
 $debug_mode = false;
