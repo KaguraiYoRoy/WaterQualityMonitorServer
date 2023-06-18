@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5deb2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- 主机： localhost:3306
--- 生成日期： 2023-06-08 18:53:14
--- 服务器版本： 8.0.32-0ubuntu0.20.04.2
--- PHP 版本： 7.4.3-4ubuntu2.18
+-- 主机： localhost
+-- 生成日期： 2023-06-18 23:22:11
+-- 服务器版本： 8.0.24
+-- PHP 版本： 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,14 +35,29 @@ CREATE TABLE `activation_code` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `data`
+--
+
+CREATE TABLE `data` (
+  `time` timestamp NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `watertemp` double NOT NULL,
+  `tds` smallint NOT NULL,
+  `lm35` double NOT NULL,
+  `ph` double NOT NULL,
+  `turbidity` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `tasks`
 --
 
 CREATE TABLE `tasks` (
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id` int UNSIGNED NOT NULL,
-  `task` json NOT NULL,
-  `status` tinyint NOT NULL
+  `task` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -69,6 +83,12 @@ CREATE TABLE `tokens` (
 --
 ALTER TABLE `activation_code`
   ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`time`);
 
 --
 -- 表的索引 `tasks`
