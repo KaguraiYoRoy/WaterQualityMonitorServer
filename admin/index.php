@@ -36,6 +36,9 @@ if(!$row = mysqli_fetch_array($query_res)){
 <?php
 	
 ?>
+	<form action="login.php?logout=1" method="post">
+		<input type="submit" value="注销">
+	</form>
 </body>
 <footer>
 	<p>Copyright. ©2020-2023 iYoRoy Studio.

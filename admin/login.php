@@ -10,6 +10,13 @@ if(!$conn){//连接数据库
 	die($errmsg[2]['msg']);
 }
 
+if(isset($_REQUEST['logout'])&&$_REQUEST['logout']==1){
+	cleanup();
+	setcookie("token", "", time()-3600);
+	echo "Logout!";
+	header('Refresh:3;url=login.html');
+}
+
 $token = filter($_REQUEST['token']);
 $sql = "select id from tokens where token=\"$token\"";
 $query_res = query_sql($sql);
