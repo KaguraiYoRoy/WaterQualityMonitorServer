@@ -47,9 +47,8 @@ if($row = mysqli_fetch_array($query_res)){
 	$datarows = $row[0];
 }
 
-echo "Total: $datarows rows.<br>";
 
-$pages = ($datarows - 1) /50 + 1;
+$pages = floor(($datarows - 1) /50 + 1);
 $cur_page = isset($_REQUEST['page'])?$_REQUEST['page']:1;
 
 $start = 50 * ($cur_page - 1);
@@ -89,6 +88,35 @@ while($row = mysqli_fetch_array($query_res)){
 
 ?>
 </table>
+<?php
+echo "Total: $datarows rows/$pages pages.<br>";
+?>
+<table><tr>
+<?php
+
+if($cur_page > 1){
+	echo '<th><form action="index.php?page=1" method="post"><input type="submit" value="<<"></form></th>';
+	echo '<th><form action="index.php?page=' . $cur_page-1 . '" method="post"><input type="submit" value="<"></form></th>';
+}
+
+echo "
+<th>
+<form action=\"index.php\" method=\"post\">
+	<input type=\"number\" name=\"page\" style=\"width:40px\" value=$cur_page>
+	<input type=\"submit\" value=\"Jump to\">
+</form>
+</th>
+";
+
+if($cur_page < $pages){
+	$nextpage = $cur_page + 1;
+	echo "<th><form action=\"index.php?page=$nextpage\" method=\"post\"><input type=\"submit\" value=\">\"></form></th>";
+	echo "<th><form action=\"index.php?page=$pages\" method=\"post\"><input type=\"submit\" value=\">>\"></form></th>";
+}
+
+
+?>
+</tr></table>
 <hr>
 <form action="login.php?logout=1" method="post">
 	<input type="submit" value="注销">
