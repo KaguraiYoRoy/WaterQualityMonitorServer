@@ -5,8 +5,8 @@ $mysql_username = 'water';
 $mysql_password = 'RLXpipwB7N8wWXnJ';
 $mysql_database = 'water';
 
-$cron_url = 'http://api.iyoroy.cn/water/v1/api/cron.php';
-$upload_url = 'http://api.iyoroy.cn/water/v1/api/upload.php';
+$cron_url = 'http://192.168.3.3/api/cron.php';
+$upload_url = 'http://192.168.3.3/api/upload.php';
 
 $service_status = true;
 $debug_mode = false;

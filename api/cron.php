@@ -16,6 +16,7 @@ if(!$conn){
 }
 
 $token = $_REQUEST['token'];
+$batvoltage = filter(isset($_REQUEST['batvoltage'])?$_REQUEST['batvoltage']:0.00);
 $sql = "select id from tokens where token=\"" . filter($token) . "\"";
 $query_res = query_sql($sql);
 if(!$query_res){
@@ -27,7 +28,7 @@ if(!$row = mysqli_fetch_array($query_res)){
 $id = $row['id'];
 
 $time = date('Y-m-d H:i:s');
-$sql = "update tokens set online=1,lastrequest=\"$time\" where id=$id";
+$sql = "update tokens set online=1,batvoltage=$batvoltage,lastrequest=\"$time\" where id=$id";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));

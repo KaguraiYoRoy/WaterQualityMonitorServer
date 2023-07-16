@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- 主机： localhost
--- 生成日期： 2023-06-18 23:22:11
--- 服务器版本： 8.0.24
--- PHP 版本： 8.0.26
+-- 主机： localhost:3306
+-- 生成日期： 2023-07-16 02:52:41
+-- 服务器版本： 8.0.33-0ubuntu0.20.04.2
+-- PHP 版本： 7.4.3-4ubuntu2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -71,6 +72,7 @@ CREATE TABLE `tokens` (
   `token` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nick` varchar(128) NOT NULL,
   `online` tinyint(1) NOT NULL DEFAULT '0',
+  `batvoltage` double NOT NULL,
   `lastrequest` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

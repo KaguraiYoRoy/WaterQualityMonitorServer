@@ -27,6 +27,22 @@ if(!$row = mysqli_fetch_array($query_res)){
 }
 $id = $row['id'];
 
+$sql = "select nick,online,batvoltage from tokens where id=$id";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die($errmsg[4]['msg']);
+}
+if(!$row = mysqli_fetch_array($query_res)){
+	$nick = "获取设备代号失败！";
+	$online = "获取在线状态失败！";
+	$batvoltage = "获取电池信息失败！";
+}
+else {
+	$nick = $row['nick'];
+	$online = $row['online'];
+	$batvoltage = $row['batvoltage'];
+}
+
 ?>
 <html>
 <head>
@@ -34,6 +50,20 @@ $id = $row['id'];
 	<title>WaterMonitor Login</title>
 </head>
 <body>
+<table>
+	<tr>
+		<th>机器代号：</th>
+		<th><?php echo $nick;?></th>
+	</tr>
+	<tr>
+		<th>在线状态：</th>
+		<th><?php echo $online?"在线":"离线"?></th>
+	</tr>
+	<tr>
+		<th>电池电压：</th>
+		<th><?php echo $batvoltage;?>
+	</tr>
+</table>
 <hr>
 <?php
 
@@ -88,6 +118,7 @@ while($row = mysqli_fetch_array($query_res)){
 
 ?>
 </table>
+<h2>Data Table</h2>
 <?php
 echo "Total: $datarows rows/$pages pages.<br>";
 ?>
@@ -99,14 +130,16 @@ if($cur_page > 1){
 	echo '<th><form action="index.php?page=' . $cur_page-1 . '" method="post"><input type="submit" value="<"></form></th>';
 }
 
-echo "
-<th>
-<form action=\"index.php\" method=\"post\">
-	<input type=\"number\" name=\"page\" style=\"width:40px\" value=$cur_page>
-	<input type=\"submit\" value=\"Jump to\">
-</form>
-</th>
-";
+if($pages != 1){
+	echo "
+		<th>
+		<form action=\"index.php\" method=\"post\">
+			<input type=\"number\" name=\"page\" style=\"width:40px\" value=$cur_page>
+			<input type=\"submit\" value=\"Jump to\">
+		</form>
+		</th>
+	";
+}
 
 if($cur_page < $pages){
 	$nextpage = $cur_page + 1;
