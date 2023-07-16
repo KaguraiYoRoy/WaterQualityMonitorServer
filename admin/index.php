@@ -126,8 +126,9 @@ echo "Total: $datarows rows/$pages pages.<br>";
 <?php
 
 if($cur_page > 1){
-	echo '<th><form action="index.php?page=1" method="post"><input type="submit" value="<<"></form></th>';
-	echo '<th><form action="index.php?page=' . $cur_page-1 . '" method="post"><input type="submit" value="<"></form></th>';
+	$lastpage = $cur_page - 1;
+	echo "<th><form action=\"index.php?page=1\" method=\"post\"><input type=\"submit\" value=\"<<\"></form></th>";
+	echo "<th><form action=\"index.php?page=$lastpage\" method=\"post\"><input type=\"submit\" value=\"<\"></form></th>";
 }
 
 if($pages != 1){
