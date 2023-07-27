@@ -11,8 +11,8 @@ if(!$conn){//连接数据库
 }
 
 if(!isset($_COOKIE['token'])){
-	echo "You haven't login yet!";
 	header('Refresh:3;url=login.html');
+	die("You haven't login yet!");
 }
 
 $token = $_COOKIE['token'];
