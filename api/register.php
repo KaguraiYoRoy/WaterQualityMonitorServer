@@ -37,7 +37,7 @@ if(!$query_res){
 $token = md5($id . $_REQUEST['nick'] . time() . rand(1,1024));
 $time = date('Y-m-d H:i:s'); 
 
-$sql = "insert into tokens values($id,\"$token\",\"$nick\",0,\"$time\")";
+$sql = "insert into tokens values($id,\"$token\",\"$nick\",0,0,\"$time\")";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
