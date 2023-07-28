@@ -11,6 +11,10 @@ if(!$conn){//连接数据库
 }
 
 $sql = "update tokens set online=0 where DATE_ADD(lastrequest,INTERVAL 1 MINUTE)<".date('Y-m-d H:i:s');
+$query_res = query_sql($sql);
+if(!$query_res){
+	die($errmsg[4]['msg']);
+}
 
 echo json_encode(array("result"=>0,"msg"=>"OK"));
 
