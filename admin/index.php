@@ -99,7 +99,7 @@ $cur_page = isset($_REQUEST['page'])?$_REQUEST['page']:1;
 
 $start = 50 * ($cur_page - 1);
 
-$sql = "select * from data where id=$id limit $start,50";
+$sql = "select * from data where id=$id order by time desc limit $start,50";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
