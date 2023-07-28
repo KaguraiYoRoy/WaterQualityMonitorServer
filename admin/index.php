@@ -49,20 +49,6 @@ else {
 	<meta charset="utf-8">
 	<title>WaterMonitor Login</title>
 	<script>
-		function checkAll(){
-				var checkAllEle = document.getElementById("box");
-				if(checkAllEle.checked==true){
-					var checkOnes = document.getElementsByName("checker");
-					for(var i=0;i<checkOnes.length;i++){
-						checkOnes[i].checked=true;
-					}
-				}else{
-					var checkOnes = document.getElementsByName("checker");
-					for(var i=0;i<checkOnes.length;i++){
-						checkOnes[i].checked=false;
-					}
-				}
-			}
 	</script>
 </head>
 <body>
@@ -122,7 +108,6 @@ if(!$query_res){
 
 while($row = mysqli_fetch_array($query_res)){
 
-	echo "<tr><th><input type=\"checkbox\" name=\"checker\"/></th>";
 	echo "<th>" . $row['time'] . "</th>";
 	echo "<th>" . $row['lm35'] . "</th>";
 	echo "<th>" . $row['watertemp'] . "</th>";
