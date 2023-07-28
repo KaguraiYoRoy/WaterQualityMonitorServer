@@ -123,6 +123,7 @@ while($row = mysqli_fetch_array($query_res)){
 <?php
 echo "Total: $datarows rows/$pages pages.<br>";
 ?>
+<a href="./exportcsv.php"><input type="button" value="导出"/></a>
 <table><tr>
 <?php
 
