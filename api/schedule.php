@@ -10,7 +10,14 @@ if(!$conn){//连接数据库
 	die($errmsg[2]['msg']);
 }
 
-$sql = "update tokens set online=0 where DATE_ADD(lastrequest,INTERVAL 1 MINUTE)<".date('Y-m-d H:i:s');
+$time = date('Y-m-d H:i:s');
+$sql = "update tokens set online=0 where DATE_ADD(lastrequest,INTERVAL 1 MINUTE)<\"$time\"";
+$query_res = query_sql($sql);
+if(!$query_res){
+	die($errmsg[4]['msg']);
+}
+
+$sql = "delete from data where DATE_ADD(time,INTERVAL 30 DAY)<\"$time\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
