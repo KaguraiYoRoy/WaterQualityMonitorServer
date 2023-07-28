@@ -95,7 +95,6 @@ if(!$query_res){
 
 <table>
 	<tr>
-	    <th><input type="checkbox" id="box" onclick="checkAll()" /></th>
 		<th>Time</th>
 		<th>Core Temp</th>
 		<th>Water Temp</th>
