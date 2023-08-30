@@ -21,7 +21,7 @@ $tds = isset($_REQUEST['TDS'])?intval($_REQUEST['TDS']):0;
 $lm35 = isset($_REQUEST['LM35'])?doubleval($_REQUEST['LM35']):'0.00';
 $ph = isset($_REQUEST['PH'])?doubleval($_REQUEST['PH']):'0.00';
 $turbidity = isset($_REQUEST['Turbidity'])?doubleval($_REQUEST['Turbidity']):'0.00';
-$sql = "select id from tokens where token=\"$token\"";
+$sql = "select {$mysql_prefix}id from tokens where token=\"$token\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
@@ -32,13 +32,13 @@ if(!$row = mysqli_fetch_array($query_res)){
 $id = $row['id'];
 
 $time = date('Y-m-d H:i:s');
-$sql = "update tokens set online=1,lastrequest=\"$time\" where id=$id";
+$sql = "update {$mysql_prefix}tokens set online=1,lastrequest=\"$time\" where id=$id";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
 }
 
-$sql = "insert into data values(\"$time\",$id,$watertemp,$tds,$lm35,$ph,$turbidity)";
+$sql = "insert into {$mysql_prefix}data values(\"$time\",$id,$watertemp,$tds,$lm35,$ph,$turbidity)";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));

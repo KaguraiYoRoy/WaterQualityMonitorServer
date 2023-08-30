@@ -18,7 +18,7 @@ if(!isset($_REQUEST['code'])||!isset($_REQUEST['nick'])){
 $code = filter($_REQUEST['code']);
 $nick = filter($_REQUEST['nick']);
 
-$sql = "select id from activation_code where code=\"$code\"";
+$sql = "select id from {$mysql_prefix}activation_code where code=\"$code\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));
@@ -28,7 +28,7 @@ if(!$row = mysqli_fetch_array($query_res)){
 }
 $id = $row['id'];
 
-$sql = "delete from tokens where id=$id";
+$sql = "delete from {$mysql_prefix}tokens where id=$id";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[2]));
@@ -37,7 +37,7 @@ if(!$query_res){
 $token = md5($id . $_REQUEST['nick'] . time() . rand(1,1024));
 $time = date('Y-m-d H:i:s'); 
 
-$sql = "insert into tokens values($id,\"$token\",\"$nick\",0,0,\"$time\")";
+$sql = "insert into {$mysql_prefix}tokens values($id,\"$token\",\"$nick\",0,0,\"$time\")";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die(json_encode($errmsg[4]));

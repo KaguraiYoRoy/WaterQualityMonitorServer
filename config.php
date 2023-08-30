@@ -4,6 +4,7 @@ $mysql_server_host = 'localhost';
 $mysql_username = 'water';
 $mysql_password = 'RLXpipwB7N8wWXnJ';
 $mysql_database = 'water';
+$mysql_prefix = '';
 
 $cron_url = 'http://192.168.3.3/api/cron.php';
 $upload_url = 'http://192.168.3.3/api/upload.php';

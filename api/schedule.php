@@ -11,13 +11,13 @@ if(!$conn){//连接数据库
 }
 
 $time = date('Y-m-d H:i:s');
-$sql = "update tokens set online=0 where DATE_ADD(lastrequest,INTERVAL 1 MINUTE)<\"$time\"";
+$sql = "update {$mysql_prefix}tokens set online=0 where DATE_ADD(lastrequest,INTERVAL 1 MINUTE)<\"$time\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
 }
 
-$sql = "delete from data where DATE_ADD(time,INTERVAL 30 DAY)<\"$time\"";
+$sql = "delete from {$mysql_prefix}data where DATE_ADD(time,INTERVAL 30 DAY)<\"$time\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);

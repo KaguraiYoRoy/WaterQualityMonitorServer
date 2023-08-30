@@ -16,7 +16,7 @@ if(!isset($_COOKIE['token'])){
 }
 
 $token = $_COOKIE['token'];
-$sql = "select id from tokens where token=\"$token\"";
+$sql = "select id from {$mysql_prefix}tokens where token=\"$token\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
@@ -27,7 +27,7 @@ if(!$row = mysqli_fetch_array($query_res)){
 }
 $id = $row['id'];
 
-$sql = "select nick,online,batvoltage from tokens where id=$id";
+$sql = "select nick,online,batvoltage from {$mysql_prefix}tokens where id=$id";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
@@ -69,7 +69,7 @@ else {
 <hr>
 <?php
 
-$sql = "select count(*) from data where id = $id";
+$sql = "select count(*) from {$mysql_prefix}data where id = $id";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);
@@ -85,7 +85,7 @@ $cur_page = isset($_REQUEST['page'])?$_REQUEST['page']:1;
 
 $start = 50 * ($cur_page - 1);
 
-$sql = "select * from data where id=$id order by time desc limit $start,50";
+$sql = "select * from {$mysql_prefix}data where id=$id order by time desc limit $start,50";
 $query_res = query_sql($sql);
 if(!$query_res){
 	die($errmsg[4]['msg']);

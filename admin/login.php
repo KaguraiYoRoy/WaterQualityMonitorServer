@@ -18,7 +18,7 @@ if(isset($_REQUEST['logout'])&&$_REQUEST['logout']==1){
 }
 
 $token = filter($_REQUEST['token']);
-$sql = "select id from tokens where token=\"$token\"";
+$sql = "select id from {$mysql_prefix}tokens where token=\"$token\"";
 $query_res = query_sql($sql);
 if(!$query_res){
 	cleanup();
